@@ -1,0 +1,23 @@
+import React from 'react';
+import './App.css';
+
+export default function GamesList({games}){
+	const emptyMessage = (
+		<p>There are no games yet in your collection.</p>
+	);
+
+	const gamesList = (
+		<p>Iterate through games.</p>
+	);
+	
+	return (
+
+	    <div>
+	      {games.length === 0 ? emptyMessage : gamesList }
+	    </div>
+	    
+	    
+	  
+	);
+
+}

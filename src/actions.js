@@ -1,4 +1,4 @@
-export const SET_GAMES = 'SET_GAMES';
+import { SET_GAMES } from './action-types';
 
 export function setGames(games) {
 	return {

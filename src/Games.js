@@ -4,6 +4,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import GamesList from './GamesList';
 import { fetchGames } from './actions';
+import { NavLink } from 'react-router-dom';
 
 class Games extends Component {
   
@@ -14,16 +15,18 @@ class Games extends Component {
 
   render() {
     return (
-
         <div>
-          <h2>Games List</h2>
-          
 
+          <h2>Games List</h2>
+          <NavLink to={this.props.match.url + "/new"} className="ui basic button">
+            <i className="icon plus"></i>
+            Add Game
+          </NavLink>
+        
           <GamesList games={this.props.games} />
+
         </div>
-        
-        
-      
+    
     );
   }
 }

@@ -9,15 +9,23 @@ class AddGame extends Component {
   };
 
   handleChange = (e) => {
-  	this.setState({ [e.target.name]: e.target.value })
+  	this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state)
   }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('form submitted');
+
+  }
+
   render() {
     return (
-      <form className="ui form">
+      <form className="ui form" onSubmit={this.handleSubmit}>
 
      	<h2>Add New Game</h2>
 
-        <div className="field error">
+        <div className={classnames('field')}>
           <label>Title</label>
           <input type="text" name="title" value={this.state.title} onChange={this.handleChange} id="title" placeholder="Title" />
         </div>

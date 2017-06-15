@@ -1,0 +1,4 @@
+To forward localhost to internet using ngrok you need to rewrite the Host header to
+prevent receiving an error `Invalid host header`.
+instead of running  `ngrok http  <port>` use `ngrok http -host-header=localhost <port>`.
+Note: Please `<port>` accdg to your preferences.

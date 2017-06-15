@@ -12,9 +12,10 @@ export function fetchGames() {
 		
 		fetch('/api/games')
 		.then(res => res.json())
-		.then(data => dispatch(
-			setGames( data.games )
-		))
+		.then(data => {
+			dispatch(setGames(data.games));
+			console.log(SET_GAMES);
+		})
 		.catch(err => console.log(err));
 	}
 }

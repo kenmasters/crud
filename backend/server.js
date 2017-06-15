@@ -2,20 +2,36 @@ import express from 'express';
 import mongodb from 'mongodb';
 
 const app = express();
+const PORT = 8080;
 const dbUrl = 'mongodb://localhost:27017/crudwithredux';
 
+// Connect to MongoDB Database
+// Then run Express Server @ port 8080
 mongodb.MongoClient.connect(dbUrl, (err, db) => {
 
-app.get('/api/games', (req, res) => {
-	if (err) throw err;
+	if (err) {
+		console.log(`----- FAILED TO CONNECT TO MONGODB`);
+		return;
+	}
 
-	db.collection('games').find({}).toArray((err, games) => {
+	console.log(`----- CONNECTED TO MONGODB @ ${dbUrl}`);
+
+	// START THE SERVER
+	app.listen(PORT, () => console.log(`----- SERVER ONLINE @ localhost:${PORT}`));
+	
+	// DEFINE SOME ROUTES
+	app.get('/', (req, res) => {
+		res.send('<h1>Home Page</h1>');
+	});
+
+	app.get('/api/games', (req, res) => {
 		if (err) throw err;
 
-		res.json({ games });
-	})
-})
+		db.collection('games').find({}).toArray((err, games) => {
+			if (err) throw err;
 
-app.listen(8080, () => console.log('SERVER ONLINE'))
+			res.json({ games });
+		})
+	})
 
 });

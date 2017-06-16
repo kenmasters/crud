@@ -1,9 +1,13 @@
 import express from 'express';
 import mongodb from 'mongodb';
+import bodyParser from 'body-parser';
 
 const app = express();
 const PORT = 8080;
 const dbUrl = 'mongodb://localhost:27017/crudwithredux';
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Connect to MongoDB Database
 // Then run Express Server @ port 8080

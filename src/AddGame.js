@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
+import { saveGame } from './actions';
+import { connect } from 'react-redux';
 
 
 class AddGame extends Component {
   state = {
   	title: '',
-  	cover: ''
+  	cover: '',
+    errors: {},
+    loading: false
   };
 
   handleChange = (e) => {
   	this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state)
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('form submitted');
-
+    this.setState({loading:true});
+    this.props.saveGame();
+    setTimeout(() => this.setState({loading:false}), 1000);
   }
 
   render() {
     return (
-      <form className="ui form" onSubmit={this.handleSubmit}>
+      <form className={classNames('ui', 'form', {'loading':this.state.loading})} onSubmit={this.handleSubmit}>
 
      	<h2>Add New Game</h2>
 
-        <div className={classnames('field')}>
+        <div className={classNames('field')}>
           <label>Title</label>
           <input type="text" name="title" value={this.state.title} onChange={this.handleChange} id="title" placeholder="Title" />
         </div>
@@ -59,4 +64,4 @@ class AddGame extends Component {
 // 	}
 // }
 
-export default AddGame;
+export default connect(null, { saveGame })(AddGame);

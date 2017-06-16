@@ -32,6 +32,26 @@ mongodb.MongoClient.connect(dbUrl, (err, db) => {
 
 			res.json({ games });
 		})
-	})
+	});
+
+	// app.post('/api/games', (req, res) => {
+	// 	if (err) throw err;
+
+	// 	res.json({});
+
+	// 	// db.collection('games').find({}).toArray((err, games) => {
+	// 	// 	if (err) throw err;
+
+	// 	// 	res.json({ games });
+	// 	// })
+	// });
+
+	app.use((req, res) => {
+		res.status(404).json({
+			errors: {
+				global: 'Still working on it. Please try again later when we implement it'
+			}
+		});
+	});
 
 });

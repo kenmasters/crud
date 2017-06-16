@@ -23,14 +23,14 @@ class App extends Component {
           <NavLink className="item" activeClassName="active" exact to='/topics'>TOPICS</NavLink>
         </div>
         
-          
-       
+        
 
         <Route exact path="/" component={Home}/>
         <Route exact path="/games" component={Games}/>
         <Route path="/games/new" component={AddGame}/>
         <Route path="/about" component={About}/>
         <Route path="/topics" component={Topics}/>
+
       </div>
     );
   }
